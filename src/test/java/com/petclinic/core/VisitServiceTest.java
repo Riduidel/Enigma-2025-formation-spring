@@ -18,7 +18,7 @@ class VisitServiceTest {
 		// When
 		Visit visit = tested.findByReferenceNumber(ID);
 		// Then
-		Assertions.assertThat(visit.getId())
+		Assertions.assertThat(visit.id())
 			.describedAs("The returned visit has the correct id")
 			.isEqualTo(ID);
 		Assertions.assertThat(visit)

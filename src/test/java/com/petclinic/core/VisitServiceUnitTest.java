@@ -1,7 +1,5 @@
 package com.petclinic.core;
 
-import java.time.LocalDate;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
@@ -22,14 +20,14 @@ public class VisitServiceUnitTest {
 	public void should_find_visit_by_reference_number() {
 		// Given
 		String REF = "1";
-		int ID = 1;
-		var visit = new Visit(ID, REF, LocalDate.now(), getClass().getSimpleName());
-		Mockito.when(repository.findByReferenceNumber(ID)).thenReturn(visit);
+		var visit = new Visit(0, REF, null, null);
+		Mockito.when(repository.findByReferenceNumber(REF)).thenReturn(visit);
 		// When
-		var returned = service.findByReferenceNumber(ID);
+		var returned = service.findByReferenceNumber(REF);
 		// Then
 		Assertions.assertThat(returned).isEqualTo(visit);
+		Assertions.assertThat(returned).extracting(Visit::referenceNumber).isEqualTo(REF);
 		// Optional
-		Mockito.verify(repository, Mockito.times(1)).findByReferenceNumber(ID);
+		Mockito.verify(repository, Mockito.times(1)).findByReferenceNumber(REF);
 	}
 }

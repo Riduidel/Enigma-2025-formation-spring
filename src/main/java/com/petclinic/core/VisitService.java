@@ -9,7 +9,7 @@ public class VisitService {
 
 	@Autowired VisitRepository repository;
 
-	public Visit findByReferenceNumber(long id) {
-		return repository.findByReferenceNumber(id);
+	public Visit findByReferenceNumber(String ref) {
+		return repository.findByReferenceNumber(ref);
 	}
 }

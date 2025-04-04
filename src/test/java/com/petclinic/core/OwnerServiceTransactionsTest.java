@@ -46,4 +46,15 @@ class OwnerServiceTransactionsTest {
 	    	.asInstanceOf(InstanceOfAssertFactories.DOUBLE)
 	    	.isEqualTo(800.0, Assertions.byLessThan(0.01));
 	}
+
+	@Test @Transactional
+	public void should_fail_transfer_because_amount_below_zero() {
+		// Given
+	    var ownerToCredit = ownerService.save(new Owner(null, "Jimi","Hendrix", 0));
+	    var ownerToDebit = ownerService.save(new Owner(null, "Robert","Plant",1000));
+		// When
+	    Assertions.assertThatThrownBy(() -> ownerService.transferFunds(ownerToCredit, ownerToDebit, 1200))
+		    // Then
+	    	.isInstanceOf(RuntimeException.class);
+	}
 }

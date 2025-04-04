@@ -23,6 +23,7 @@ class VisitServiceTest {
 	public void setup() {
 	    var visit = new Visit(null, ID, LocalDate.of(2013, 12, 21), "Teeth whitening");
 	    visit.setPet(new Pet(null, "dog", "luna"));
+	    visit.setOwner(new Owner(null, "joe", "satriani", 1000));
 	    tested.save(visit);
 	}
 	
@@ -42,6 +43,35 @@ class VisitServiceTest {
 			.extracting(Visit::getPet)
 			.extracting(Pet::getName)
 			.isEqualTo("luna")
+			;
+	}
+	
+	@Test @Transactional
+	void should_find_visit_with_pet() {
+		// Given
+		// When
+		var visit = tested.findByReferenceNumber(ID);
+		// Then
+		Assertions.assertThat(visit)
+			.get()
+			.extracting(Visit::getPet)
+			.extracting(Pet::getName)
+			.isEqualTo("luna")
+			;
+	}
+	
+	@Test @Transactional
+	void should_find_visit_with_owner() {
+		// Given
+		// When
+		var visit = tested.findByReferenceNumber(ID);
+		// Then
+		Assertions.assertThat(visit)
+			.get()
+			.extracting(Visit::getOwner)
+			.extracting(Owner::getFirstName)
+			.asString()
+			.isEqualToIgnoringCase("Joe")
 			;
 	}
 	

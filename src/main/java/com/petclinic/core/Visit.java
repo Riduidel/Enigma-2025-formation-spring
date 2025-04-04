@@ -22,6 +22,9 @@ public class Visit {
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	private Pet pet;
 	
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+	private Owner owner;
+	
 	public Visit() {}
 
 	public Visit(Long id, String referenceNumber, LocalDate date, String purpose) {
@@ -99,6 +102,14 @@ public class Visit {
 			.append(date).append(", purpose=").append(purpose)
 			.append(", pet=").append(pet).append("]");
 		return builder.toString();
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 	
 }

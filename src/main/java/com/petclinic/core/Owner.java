@@ -1,10 +1,13 @@
 package com.petclinic.core;
 
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Owner {
@@ -17,6 +20,9 @@ public class Owner {
 	private String lastName;
 
 	private double accountStatement;
+	
+	@OneToMany(cascade = { CascadeType.ALL })
+	private List<Pet> pets;
 	
 	public Owner() {}
 
@@ -79,11 +85,20 @@ public class Owner {
 				&& Objects.equals(lastName, other.lastName);
 	}
 
+	public List<Pet> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Owner [id=").append(id).append(", firstName=").append(firstName).append(", lastName=")
-				.append(lastName).append(", accountStatement=").append(accountStatement).append("]");
+				.append(lastName).append(", accountStatement=").append(accountStatement).append(", pets=").append(pets)
+				.append("]");
 		return builder.toString();
 	}
 

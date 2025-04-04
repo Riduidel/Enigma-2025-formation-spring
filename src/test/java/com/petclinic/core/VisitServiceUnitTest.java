@@ -26,7 +26,7 @@ public class VisitServiceUnitTest {
 		var returned = service.findByReferenceNumber(REF);
 		// Then
 		Assertions.assertThat(returned).isEqualTo(visit);
-		Assertions.assertThat(returned).extracting(Visit::referenceNumber).isEqualTo(REF);
+		Assertions.assertThat(returned).extracting(Visit::getReferenceNumber).isEqualTo(REF);
 		// Optional
 		Mockito.verify(repository, Mockito.times(1)).findByReferenceNumber(REF);
 	}

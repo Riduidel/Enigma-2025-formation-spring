@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import com.petclinic.core.Owner;
 import com.petclinic.core.Pet;
@@ -13,6 +14,7 @@ import com.petclinic.core.VisitService;
 
 import jakarta.annotation.PostConstruct;
 
+@Profile("dev")
 @Configuration
 public class DataInitializer {
 	@Autowired VisitService visitService;

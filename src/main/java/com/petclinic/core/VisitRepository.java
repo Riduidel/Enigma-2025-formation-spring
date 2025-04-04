@@ -1,12 +1,11 @@
 package com.petclinic.core;
 
-import java.time.LocalDate;
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VisitRepository {
-	public Visit findByReferenceNumber(String id) {
-		return new Visit(1, "1", LocalDate.now(), "mock visit");
-	}
+public interface VisitRepository extends JpaRepository<Visit, Long>{
+	public Optional<Visit> findByReferenceNumber(String id);
 }

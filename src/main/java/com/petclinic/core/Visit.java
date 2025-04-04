@@ -3,15 +3,23 @@ package com.petclinic.core;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Visit {
-	private long id;
+	@Id @GeneratedValue
+	private Long id;
+	@Column(unique=true)
 	private String referenceNumber;
 	private LocalDate date;
 	private String purpose;
 	
 	public Visit() {}
 
-	public Visit(long id, String referenceNumber, LocalDate date, String purpose) {
+	public Visit(Long id, String referenceNumber, LocalDate date, String purpose) {
 		super();
 		this.id = id;
 		this.referenceNumber = referenceNumber;
@@ -19,11 +27,11 @@ public class Visit {
 		this.purpose = purpose;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -3,10 +3,12 @@ package com.petclinic.core;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Visit {
@@ -16,6 +18,9 @@ public class Visit {
 	private String referenceNumber;
 	private LocalDate date;
 	private String purpose;
+	
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+	private Pet pet;
 	
 	public Visit() {}
 
@@ -59,9 +64,17 @@ public class Visit {
 		this.purpose = purpose;
 	}
 
+	public Pet getPet() {
+		return pet;
+	}
+
+	public void setPet(Pet pet) {
+		this.pet = pet;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(date, id, purpose, referenceNumber);
+		return Objects.hash(date, id, pet, purpose, referenceNumber);
 	}
 
 	@Override
@@ -73,14 +86,19 @@ public class Visit {
 		if (getClass() != obj.getClass())
 			return false;
 		Visit other = (Visit) obj;
-		return Objects.equals(date, other.date) && id == other.id && Objects.equals(purpose, other.purpose)
-				&& Objects.equals(referenceNumber, other.referenceNumber);
+		return Objects.equals(date, other.date) && Objects.equals(id, other.id) && Objects.equals(pet, other.pet)
+				&& Objects.equals(purpose, other.purpose) && Objects.equals(referenceNumber, other.referenceNumber);
 	}
 
 	@Override
 	public String toString() {
-		return "Visit [id=" + id + ", referenceNumber=" + referenceNumber + ", date=" + date + ", purpose=" + purpose
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Visit [id=").append(id)
+			.append(", referenceNumber=")
+			.append(referenceNumber).append(", date=")
+			.append(date).append(", purpose=").append(purpose)
+			.append(", pet=").append(pet).append("]");
+		return builder.toString();
 	}
 	
 }

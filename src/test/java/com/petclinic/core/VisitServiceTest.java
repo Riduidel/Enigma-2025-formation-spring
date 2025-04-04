@@ -22,6 +22,7 @@ class VisitServiceTest {
 	@BeforeEach
 	public void setup() {
 	    var visit = new Visit(null, ID, LocalDate.of(2013, 12, 21), "Teeth whitening");
+	    visit.setPet(new Pet(null, "dog", "luna"));
 	    tested.save(visit);
 	}
 	
@@ -34,7 +35,14 @@ class VisitServiceTest {
 		Assertions.assertThat(visit)
 			.get()
 			.extracting(Visit::getReferenceNumber)
-			.isEqualTo(ID);
+			.isEqualTo(ID)
+			;
+		Assertions.assertThat(visit)
+			.get()
+			.extracting(Visit::getPet)
+			.extracting(Pet::getName)
+			.isEqualTo("luna")
+			;
 	}
 	
 	@Test @Transactional

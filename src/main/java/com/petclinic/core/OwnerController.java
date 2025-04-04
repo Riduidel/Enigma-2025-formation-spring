@@ -26,7 +26,7 @@ public class OwnerController {
 		return service.findById(id);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	public Owner save(@RequestBody Owner owner) {
 		return service.save(owner);
 	}

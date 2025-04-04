@@ -1,0 +1,21 @@
+###
+GET http://localhost:8080/owner/1
+
+###
+GET http://localhost:8080/owner/search?firstName=joe
+
+###
+GET http://localhost:8080/visit/1
+
+###
+POST http://localhost:8080/owner
+Content-Type: application/json
+
+{
+    "firstName": "Jimmy", 
+    "lastName": "Page", 
+    "accountStatement": 20000,
+    "pets": [ 
+        { "type": "dog", "name": "fluffy" } 
+    ]
+}

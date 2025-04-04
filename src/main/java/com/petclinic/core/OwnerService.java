@@ -37,4 +37,8 @@ public class OwnerService {
 	    ownerToCredit.setAccountStatement(ownerToCreditNewAmount);
 	    this.ownerRepository.save(ownerToCredit);
 	}
+
+	public Optional<Owner> findById(Long id) {
+		return ownerRepository.findById(id);
+	}
 }

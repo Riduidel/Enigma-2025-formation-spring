@@ -19,3 +19,17 @@ Content-Type: application/json
         { "type": "dog", "name": "fluffy" } 
     ]
 }
+
+# Et là je modifie un utilisateur
+###
+POST http://localhost:8080/owner
+Content-Type: application/json
+
+{
+    "id":1,
+    "firstName": "Rory", 
+    "lastName": "Galhager", 
+    "accountStatement": 10000000,
+    "pets": [ 
+    ]
+}

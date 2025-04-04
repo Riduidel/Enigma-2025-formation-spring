@@ -27,7 +27,7 @@ class OwnerServiceTransactionsTest {
 			.isTrue();
 	}
 
-	@Test
+	@Test @Transactional
 	public void shouldTransferFunds() {
 		// Given
 	    var ownerToCredit = ownerService.save(new Owner(null, "Jimi","Hendrix", 0));

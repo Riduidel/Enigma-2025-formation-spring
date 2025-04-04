@@ -10,7 +10,7 @@ public class VisitRepository {
 		if(id==1) {
 			return new Visit(1, "1", LocalDate.now(), "mock visit");
 		} else {
-			return null;
+			throw new RuntimeException("pas trouvé");
 		}
 	}
 }

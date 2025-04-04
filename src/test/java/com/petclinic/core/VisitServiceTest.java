@@ -31,10 +31,8 @@ class VisitServiceTest {
 		long ID = 0;
 		// Given
 		// When
-		Visit visit = tested.findByReferenceNumber(ID);
-		// Then
-		Assertions.assertThat(visit)
-			.describedAs("When id is incorrect, null is returned")
-			.isNull();
+		Assertions.assertThatThrownBy(() -> tested.findByReferenceNumber(ID))
+			// Then
+			.isInstanceOf(RuntimeException.class);
 	}
 }

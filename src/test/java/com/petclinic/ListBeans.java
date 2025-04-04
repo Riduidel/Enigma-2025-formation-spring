@@ -10,8 +10,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
+@TestPropertySource(properties = {
+		"logging.level.org.springframework=OFF",
+		"logging.level.com.zaxxer=OFF",
+		"logging.level.org.hibernate=OFF",
+})
 class ListBeans {
 	private static final Logger logger = LoggerFactory.getLogger(ListBeans.class);
 	

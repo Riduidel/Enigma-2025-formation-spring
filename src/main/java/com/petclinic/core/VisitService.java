@@ -17,4 +17,8 @@ public class VisitService {
 	public Visit save(Visit entity) {
 		return repository.save(entity);
 	}
+
+	public Optional<Visit> findById(Long id) {
+		return repository.findById(id);
+	}
 }

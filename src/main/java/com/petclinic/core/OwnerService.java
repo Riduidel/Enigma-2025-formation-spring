@@ -1,5 +1,6 @@
 package com.petclinic.core;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,9 @@ public class OwnerService {
 
 	public Optional<Owner> findById(Long id) {
 		return ownerRepository.findById(id);
+	}
+
+	public List<Owner> findAllByFirstName(String firstName) {
+		return ownerRepository.findAllByFirstName(firstName);
 	}
 }

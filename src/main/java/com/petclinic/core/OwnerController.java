@@ -14,25 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+
 @RestController @RequestMapping("/owner")
 public class OwnerController {
 	private static final Logger logger = LoggerFactory.getLogger(OwnerController.class);
 	@Autowired
 	OwnerService service;
 
+	@Operation(description = "Get an owner by its id")
 	@GetMapping("/{id}")
-	public Optional<Owner> findById(@PathVariable Long id) {
+	public Optional<Owner> findById(
+			@Parameter(description = "Owner id")
+			@PathVariable Long id) {
 		logger.info("Searching for owner with id {}", id);
 		return service.findById(id);
 	}
 	
+	@Operation(description = "Adds a new owner to the database")
 	@PostMapping
-	public Owner save(@RequestBody Owner owner) {
+	public Owner save(
+			@Parameter(description = "Full owner object. Notice that, if an id is given in the body, this will alter the existing owner.")
+			@RequestBody Owner owner) {
 		return service.save(owner);
 	}
 
+	@Operation(description = "Search all owners having the given id")
 	@GetMapping("/search")
-	public List<Owner> findAllByFirstName(@RequestParam String firstName) {
+	public List<Owner> findAllByFirstName(
+			@Parameter(description = "Any string")
+			@RequestParam String firstName) {
 		logger.info("Searching for owner with first name {}", firstName);
 		return service.findAllByFirstName(firstName);
 	}

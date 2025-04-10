@@ -1,0 +1,38 @@
+###
+GET http://localhost:8080/owner/1
+
+###
+GET http://localhost:8080/owner/search?firstName=joe
+
+###
+GET http://localhost:8080/visit/1
+
+###
+GET http://localhost:8081/invoice/1
+
+###
+POST http://localhost:8080/owner
+Content-Type: application/json
+
+{
+    "firstName": "Jimmy", 
+    "lastName": "Page", 
+    "accountStatement": 20000,
+    "pets": [ 
+        { "type": "dog", "name": "fluffy" } 
+    ]
+}
+
+# Et là je modifie un utilisateur
+###
+POST http://localhost:8080/owner
+Content-Type: application/json
+
+{
+    "id":1,
+    "firstName": "Rory", 
+    "lastName": "Galhager", 
+    "accountStatement": 10000000,
+    "pets": [ 
+    ]
+}
